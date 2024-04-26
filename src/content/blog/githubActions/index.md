@@ -12,13 +12,13 @@ heroImage: '/blog-placeholder-about.jpg'
  
 ##### 2、通过ssh秘钥登录服务器
 ```
-ssh-copy-id root@120.27.229.201
+ssh-copy-id root@120.233.182.201
 输入密码后会在服务器的/root/.ssh目录下的authorized_keys写入本地电脑的公钥
 ```
 
 ##### 3、验证是否可以免密登录
 ```
-ssh root@120.27.229.201
+ssh root@120.233.182.201
 如果自动登录服务器则说明成功！
 ```
 ##### 4、github Actions配置
