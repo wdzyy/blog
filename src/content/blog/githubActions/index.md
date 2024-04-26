@@ -22,6 +22,11 @@ ssh root@120.27.229.201
 如果自动登录服务器则说明成功！
 ```
 ##### 4、github Actions配置
+  前提：确保服务器装了rsync，我的服务器是Ubuntu系统，安装如下
+  ```
+  apt-get update && apt-get install rsync
+  ```
+
   1).首先查看是否开启了图中的选项
   ![alt text](image.png)
   2).创建ssh私钥，如图，名字SSH_PRIVATE_KEY可以随便写，内容是本地电脑的ssh私钥
