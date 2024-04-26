@@ -1,0 +1,38 @@
+name: Release
+
+on:
+  push:
+    branches:
+      - main-qj
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install pnpm
+        run: npm install -g pnpm
+
+      - name: Install Dependencies
+        run: pnpm install
+
+      - name: Build
+        run: pnpm build
+
+      - name: Deploy to Aliyun Server
+        uses: easingthemes/ssh-deploy@main
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          ARGS: -rltgoDzvO --delete
+          SOURCE: dist/
+          REMOTE_HOST: 120.27.229.209
+          REMOTE_USER: root
+          TARGET: /data/web/zy/

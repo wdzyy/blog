@@ -10,7 +10,6 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url))
 // https://astro.build/config
 export default defineConfig({
   site: 'https://wdzyy.github.io',
-  base: '/blog',
   integrations: [tailwind(), vue(), mdx(), sitemap()],
   vite: {
     resolve: {
