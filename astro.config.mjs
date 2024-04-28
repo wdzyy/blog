@@ -1,28 +1,96 @@
-import path from 'path'
-import { fileURLToPath } from 'url'
-import { defineConfig } from 'astro/config'
-import mdx from '@astrojs/mdx'
-import sitemap from '@astrojs/sitemap'
-import tailwind from '@astrojs/tailwind'
-import vue from "@astrojs/vue";
-const __dirname = path.dirname(fileURLToPath(import.meta.url))
+import tailwind from "@astrojs/tailwind"
+import Compress from "astro-compress"
+import icon from "astro-icon"
+import { defineConfig } from "astro/config"
+import Color from "colorjs.io"
+import rehypeAutolinkHeadings from "rehype-autolink-headings"
+import rehypeKatex from "rehype-katex"
+import rehypeSlug from "rehype-slug"
+import remarkMath from "remark-math"
+import { remarkReadingTime } from "./src/plugins/remark-reading-time.mjs"
+import svelte from "@astrojs/svelte"
+import swup from '@swup/astro';
+import sitemap from '@astrojs/sitemap';
+
+const oklchToHex = (str) => {
+  const DEFAULT_HUE = 250
+  const regex = /-?\d+(\.\d+)?/g
+  const matches = str.string.match(regex)
+  const lch = [matches[0], matches[1], DEFAULT_HUE]
+  return new Color("oklch", lch).to("srgb").toString({
+    format: "hex",
+  })
+}
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://wdzyy.github.io',
-  integrations: [tailwind(), vue(), mdx(), sitemap()],
-  vite: {
-    resolve: {
-      alias: {
-        '~': path.resolve(__dirname, './src'),
+  site: "https://qzeyu.fun/",
+  base: "/",
+  integrations: [
+    tailwind(),
+    swup({
+      theme: false,
+      animationClass: 'transition-',
+      containers: ['main'],
+      smoothScrolling: true,
+      cache: true,
+      preload: true,
+      accessibility: true,
+      globalInstance: true,
+    }),
+    icon({
+      include: {
+        "material-symbols": ["*"],
+        "fa6-brands": ["*"],
+        "fa6-regular": ["*"],
+        "fa6-solid": ["*"],
       },
-    },
-  },
+    }),
+    Compress({
+      Image: false,
+    }),
+    svelte(),
+    sitemap(),
+  ],
   markdown: {
-    shikiConfig: {
-      // 选择 Shiki 内置的主题（或添加你自己的主题）
-      // https://github.com/shikijs/shiki/blob/main/docs/themes.md
-      theme: 'material-theme-darker',
+    remarkPlugins: [remarkMath, remarkReadingTime],
+    rehypePlugins: [
+      rehypeKatex,
+      rehypeSlug,
+      [
+        rehypeAutolinkHeadings,
+        {
+          behavior: "append",
+          properties: {
+            className: ["anchor"],
+          },
+          content: {
+            type: "element",
+            tagName: "span",
+            properties: {
+              className: ["anchor-icon"],
+              'data-pagefind-ignore': true,
+            },
+            children: [
+              {
+                type: "text",
+                value: "#",
+              },
+            ],
+          },
+        },
+      ],
+    ],
+  },
+  vite: {
+    css: {
+      preprocessorOptions: {
+        stylus: {
+          define: {
+            oklchToHex: oklchToHex,
+          },
+        },
+      },
     },
   },
 })

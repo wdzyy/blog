@@ -1,37 +1,26 @@
 ---
+
+import {profileConfig} from "../config";
 const today = new Date();
 ---
 
-<footer>
-	<div class="flex justify-center items-center w-full">
-		<span>&copy; {today.getFullYear()} 泽瑜Zy &copy; </span>
-		<a
-			href="https://beian.miit.gov.cn"
-			target="_blank"
-		>浙ICP备2024063533号-1</a>
-		<a
-			class="mx-1 flex items-center justify-center" href="https://www.beian.gov.cn/portal/registerSystemInfo?recordcode=33011302000565"
-			target="_blank"
-		>
-			<img
-				alt="备案" class="h-[27px] w-[27px]"
-				src="https://beian.mps.gov.cn/img/logo01.dd7ff50e.png"
-			><span>浙公网安备：33011302000565号</span>
-		</a>
-	</div>
-</footer>
-<style>
-	footer {
-		padding: 16px;
-		background: linear-gradient(var(--gray-gradient)) no-repeat;
-		color: rgb(var(--gray));
-		font-size: 16px;
-	}
-a {
-		text-decoration: none;
-		color: rgb(var(--gray));
-	}
-a:hover {
-		color: rgb(var(--gray-dark));
-	}
-</style>
+<div class="card-base max-w-[var(--page-width)] min-h-[4.5rem] rounded-b-none mx-auto flex items-center justify-center px-6">
+    <div class="transition text-50 text-sm">
+        <div class="flex justify-center items-center w-full">
+            <span>&copy; {today.getFullYear()} {profileConfig.filingName} &copy; </span>
+            <a
+                href="https://beian.miit.gov.cn"
+                target="_blank"
+            >浙ICP备2024063533号-1</a>
+            <a
+                class="mx-2 flex items-center justify-center" href="https://www.beian.gov.cn/portal/registerSystemInfo?recordcode=33011302000565"
+                target="_blank"
+            >
+                <img
+                    alt="备案" class="h-[20px] w-[20px]"
+                    src="https://beian.mps.gov.cn/img/logo01.dd7ff50e.png"
+                ><span>浙公网安备：33011302000565号</span>
+            </a>
+        </div>
+    </div>
+</div>
