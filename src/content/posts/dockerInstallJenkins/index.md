@@ -1,9 +1,10 @@
 ---
-title: 'docker 安装 jenkins'
-description: ''
+title: 'docker安装jenkins'
+description: '在docker中安装jenkins'
 published: 2024-04-25
 tags: [Docker]
 category: Docker
+image: ./docker.png
 draft: false
 ---
 #### 1、什么是Jenkins
