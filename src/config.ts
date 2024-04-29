@@ -7,7 +7,7 @@ import { LinkPreset } from './types/config'
 
 export const siteConfig: SiteConfig = {
   title: 'QJia',
-  subtitle: 'Demo Site',
+  subtitle: 'QJia\'s Blog',
   lang: 'en',
   themeHue: 250,
   banner: {
