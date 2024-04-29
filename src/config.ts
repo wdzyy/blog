@@ -8,7 +8,7 @@ import { LinkPreset } from './types/config'
 export const siteConfig: SiteConfig = {
   title: 'QJia',
   subtitle: 'QJia\'s Blog',
-  lang: 'en',
+  lang: 'zh_CN',
   themeHue: 250,
   banner: {
     enable: false,
