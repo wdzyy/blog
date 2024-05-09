@@ -33,6 +33,11 @@ export const navBarConfig: NavBarConfig = {
       url: 'https://github.com/wdzyy/blog',
       external: true,
     },
+    {
+      name: 'ZyAdmin',
+      url: 'https://admin.qzeyu.fun',
+      external: true,
+    },
   ],
 }
 
