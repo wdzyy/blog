@@ -103,3 +103,24 @@ module.exports = {
   },
 };
 ```
+
+#### 6、使用Message等组件时，没有样式时，如下处理
+
+![alt text](image-1.png)
+
+```bash
+  # tsconfig.json
+  "include": [
+    "auto-imports.d.ts"
+  ]
+```
+
+###### 组件中使用时
+
+![alt text](image.png)
+
+```bash
+ # 无需引入 import { ElMessage, ElMessageBox } from 'element-plus'
+ # 直接使用即可
+  ElMessage.success('修改成功！')
+```
